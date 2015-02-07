@@ -18,6 +18,8 @@ class FirstViewController: UIViewController {
     var previewLayer : AVCaptureVideoPreviewLayer?
     
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         captureSession.sessionPreset = AVCaptureSessionPresetHigh
