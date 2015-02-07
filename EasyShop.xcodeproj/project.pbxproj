@@ -14,6 +14,10 @@
 		3F8745D01A86665A00E98530 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F8745CF1A86665A00E98530 /* Images.xcassets */; };
 		3F8745D31A86665A00E98530 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3F8745D11A86665A00E98530 /* LaunchScreen.xib */; };
 		3F8745DF1A86665A00E98530 /* EasyShopTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8745DE1A86665A00E98530 /* EasyShopTests.swift */; };
+		3F8745EF1A8676AC00E98530 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8745EE1A8676AC00E98530 /* UIKit.framework */; };
+		3F8745F11A8676B000E98530 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8745F01A8676B000E98530 /* AVFoundation.framework */; };
+		3F8745F31A8676B700E98530 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8745F21A8676B700E98530 /* CoreLocation.framework */; };
+		3F8745FE1A86A44B00E98530 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8745FD1A86A44B00E98530 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +42,11 @@
 		3F8745D81A86665A00E98530 /* EasyShopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyShopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8745DD1A86665A00E98530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8745DE1A86665A00E98530 /* EasyShopTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyShopTests.swift; sourceTree = "<group>"; };
+		3F8745EE1A8676AC00E98530 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3F8745F01A8676B000E98530 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3F8745F21A8676B700E98530 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3F8745F61A868A6700E98530 /* EasyShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = EasyShop.entitlements; sourceTree = "<group>"; };
+		3F8745FD1A86A44B00E98530 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +54,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F8745F31A8676B700E98530 /* CoreLocation.framework in Frameworks */,
+				3F8745FE1A86A44B00E98530 /* CloudKit.framework in Frameworks */,
+				3F8745F11A8676B000E98530 /* AVFoundation.framework in Frameworks */,
+				3F8745EF1A8676AC00E98530 /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,10 @@
 		3F8745B81A86665A00E98530 = {
 			isa = PBXGroup;
 			children = (
+				3F8745FD1A86A44B00E98530 /* CloudKit.framework */,
+				3F8745F21A8676B700E98530 /* CoreLocation.framework */,
+				3F8745F01A8676B000E98530 /* AVFoundation.framework */,
+				3F8745EE1A8676AC00E98530 /* UIKit.framework */,
 				3F8745C31A86665A00E98530 /* EasyShop */,
 				3F8745DB1A86665A00E98530 /* EasyShopTests */,
 				3F8745C21A86665A00E98530 /* Products */,
@@ -79,6 +96,7 @@
 		3F8745C31A86665A00E98530 /* EasyShop */ = {
 			isa = PBXGroup;
 			children = (
+				3F8745F61A868A6700E98530 /* EasyShop.entitlements */,
 				3F8745C61A86665A00E98530 /* AppDelegate.swift */,
 				3F8745C81A86665A00E98530 /* FirstViewController.swift */,
 				3F8745CA1A86665A00E98530 /* SecondViewController.swift */,
@@ -164,6 +182,12 @@
 				TargetAttributes = {
 					3F8745C01A86665A00E98530 = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 2S3D8J8M3T;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					3F8745D71A86665A00E98530 = {
 						CreatedOnToolsVersion = 6.1;
@@ -342,9 +366,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EasyShop/EasyShop.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EasyShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -352,9 +380,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EasyShop/EasyShop.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EasyShop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -411,6 +443,7 @@
 				3F8745E41A86665A00E98530 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F8745E51A86665A00E98530 /* Build configuration list for PBXNativeTarget "EasyShopTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +452,7 @@
 				3F8745E71A86665A00E98530 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
