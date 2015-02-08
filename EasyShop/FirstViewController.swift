@@ -149,7 +149,47 @@ class FirstViewController: UIViewController , UIImagePickerControllerDelegate, U
                                 photo.fileURL.path!)
                             //NSLog(photo.string)
                             NSLog(photo.fileURL.path!)
-                            UIApplication.sharedApplication().openURL(NSURL(string: "http://www.google.com")!)
+                           // UIApplication.sharedApplication().openURL(NSURL(string: "http://www.google.com")!)
+                            
+                            
+                            var imageData = UIImagePNGRepresentation(image)
+                  
+                           
+                            
+                
+                            
+                          /*  let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: {
+                                data, response, error in
+                                
+                                if error != nil {
+                                    // handle error here
+                                    return
+                                }
+                                
+                                // if response was JSON, then parse it
+                                
+                                var parseError: NSError?
+                                let responseObject: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &parseError)
+                                
+                                if let responseDictionary = responseObject as? NSDictionary {
+                                    // handle the parsed dictionary here
+                                } else {
+                                    // handle parsing error here
+                                }
+                                
+                                // if response was text or html, then just convert it to a string
+                                //
+                                // let responseString = NSString(data: data, encoding: NSUTF8StringEncoding)
+                                // println("responseString = \(responseString)")
+                                
+                                // note, if you want to update the UI, make sure to dispatch that to the main queue, e.g.:
+                                //
+                                // dispatch_async(dispatch_get_main_queue()) {
+                                //     // update your UI and model objects here
+                                // }
+                            })
+                            task.resume()*/
+                            
                             
                             
                             //self.imageView.image = image
@@ -165,10 +205,8 @@ class FirstViewController: UIViewController , UIImagePickerControllerDelegate, U
             }))
     }
     
-    
-    
-    
-}
+     }
+
 
 
 

@@ -8,7 +8,7 @@
 import UIKit
 import MobileCoreServices
 import CloudKit
-
+import MobileCoreServices
 
 class SecondViewController: UIViewController,ModelDelegate{
 
@@ -126,7 +126,7 @@ class SecondViewController: UIViewController,ModelDelegate{
        
     }
   
-    func loadImageURL(){
+   /* func loadImageURL(){
         
         let detailItem = ShopPhotos!
             
@@ -145,9 +145,7 @@ class SecondViewController: UIViewController,ModelDelegate{
             }
         }
     
-    }
-   
-
-
+    }*/
+ 
 }
 
