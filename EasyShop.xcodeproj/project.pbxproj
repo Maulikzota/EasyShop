@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F7CE1CB1A86CA1E00F676C6 /* MKSImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CE1CA1A86CA1E00F676C6 /* MKSImagePicker.swift */; };
+		3F7CE1CF1A86CCA700F676C6 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CE1CE1A86CCA700F676C6 /* FileUtil.swift */; };
+		3F7CE1D31A86DE3100F676C6 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7CE1D21A86DE3100F676C6 /* CloudKit.framework */; };
+		3F7CE1D61A86EACE00F676C6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CE1D51A86EACE00F676C6 /* Model.swift */; };
+		3F7CE1D81A86EB8700F676C6 /* ShopPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CE1D71A86EB8700F676C6 /* ShopPhotos.swift */; };
+		3F7CE1DA1A86ECEC00F676C6 /* UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7CE1D91A86ECEC00F676C6 /* UserInfo.swift */; };
 		3F8745C71A86665A00E98530 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8745C61A86665A00E98530 /* AppDelegate.swift */; };
 		3F8745C91A86665A00E98530 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8745C81A86665A00E98530 /* FirstViewController.swift */; };
 		3F8745CB1A86665A00E98530 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F8745CA1A86665A00E98530 /* SecondViewController.swift */; };
@@ -17,7 +23,7 @@
 		3F8745EF1A8676AC00E98530 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8745EE1A8676AC00E98530 /* UIKit.framework */; };
 		3F8745F11A8676B000E98530 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8745F01A8676B000E98530 /* AVFoundation.framework */; };
 		3F8745F31A8676B700E98530 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8745F21A8676B700E98530 /* CoreLocation.framework */; };
-		3F8745FE1A86A44B00E98530 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F8745FD1A86A44B00E98530 /* CloudKit.framework */; };
+		3FCBE5101A86B07800FCD699 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FCBE50F1A86B07800FCD699 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +37,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F7CE1CA1A86CA1E00F676C6 /* MKSImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MKSImagePicker.swift; sourceTree = "<group>"; };
+		3F7CE1CE1A86CCA700F676C6 /* FileUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
+		3F7CE1D21A86DE3100F676C6 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		3F7CE1D51A86EACE00F676C6 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3F7CE1D71A86EB8700F676C6 /* ShopPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopPhotos.swift; sourceTree = "<group>"; };
+		3F7CE1D91A86ECEC00F676C6 /* UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfo.swift; sourceTree = "<group>"; };
 		3F8745C11A86665A00E98530 /* EasyShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EasyShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F8745C51A86665A00E98530 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F8745C61A86665A00E98530 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -46,7 +58,7 @@
 		3F8745F01A8676B000E98530 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3F8745F21A8676B700E98530 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3F8745F61A868A6700E98530 /* EasyShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = EasyShop.entitlements; sourceTree = "<group>"; };
-		3F8745FD1A86A44B00E98530 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		3FCBE50F1A86B07800FCD699 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F8745F31A8676B700E98530 /* CoreLocation.framework in Frameworks */,
-				3F8745FE1A86A44B00E98530 /* CloudKit.framework in Frameworks */,
+				3F7CE1D31A86DE3100F676C6 /* CloudKit.framework in Frameworks */,
 				3F8745F11A8676B000E98530 /* AVFoundation.framework in Frameworks */,
 				3F8745EF1A8676AC00E98530 /* UIKit.framework in Frameworks */,
 			);
@@ -71,10 +83,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F7CE1CC1A86CC8D00F676C6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3F7CE1CD1A86CCA700F676C6 /* Extensions */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		3F7CE1CD1A86CCA700F676C6 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3F7CE1CE1A86CCA700F676C6 /* FileUtil.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3F7CE1D41A86E98000F676C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3F7CE1D91A86ECEC00F676C6 /* UserInfo.swift */,
+				3F7CE1D51A86EACE00F676C6 /* Model.swift */,
+				3F7CE1D71A86EB8700F676C6 /* ShopPhotos.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		3F8745B81A86665A00E98530 = {
 			isa = PBXGroup;
 			children = (
-				3F8745FD1A86A44B00E98530 /* CloudKit.framework */,
+				3F7CE1D21A86DE3100F676C6 /* CloudKit.framework */,
 				3F8745F21A8676B700E98530 /* CoreLocation.framework */,
 				3F8745F01A8676B000E98530 /* AVFoundation.framework */,
 				3F8745EE1A8676AC00E98530 /* UIKit.framework */,
@@ -96,6 +134,9 @@
 		3F8745C31A86665A00E98530 /* EasyShop */ = {
 			isa = PBXGroup;
 			children = (
+				3F7CE1D41A86E98000F676C6 /* Model */,
+				3F7CE1CC1A86CC8D00F676C6 /* Utils */,
+				3F7CE1CA1A86CA1E00F676C6 /* MKSImagePicker.swift */,
 				3F8745F61A868A6700E98530 /* EasyShop.entitlements */,
 				3F8745C61A86665A00E98530 /* AppDelegate.swift */,
 				3F8745C81A86665A00E98530 /* FirstViewController.swift */,
@@ -104,6 +145,7 @@
 				3F8745CF1A86665A00E98530 /* Images.xcassets */,
 				3F8745D11A86665A00E98530 /* LaunchScreen.xib */,
 				3F8745C41A86665A00E98530 /* Supporting Files */,
+				3FCBE50F1A86B07800FCD699 /* HomeViewController.swift */,
 			);
 			path = EasyShop;
 			sourceTree = "<group>";
@@ -239,9 +281,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F7CE1D61A86EACE00F676C6 /* Model.swift in Sources */,
 				3F8745CB1A86665A00E98530 /* SecondViewController.swift in Sources */,
+				3F7CE1D81A86EB8700F676C6 /* ShopPhotos.swift in Sources */,
 				3F8745C71A86665A00E98530 /* AppDelegate.swift in Sources */,
+				3F7CE1CB1A86CA1E00F676C6 /* MKSImagePicker.swift in Sources */,
+				3F7CE1CF1A86CCA700F676C6 /* FileUtil.swift in Sources */,
 				3F8745C91A86665A00E98530 /* FirstViewController.swift in Sources */,
+				3F7CE1DA1A86ECEC00F676C6 /* UserInfo.swift in Sources */,
+				3FCBE5101A86B07800FCD699 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
