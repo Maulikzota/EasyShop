@@ -18,7 +18,7 @@ class SecondViewController: UIViewController,ModelDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loadImageURL()
+        //self.loadImageURL()
         // Do any additional setup after loading the view, typically from a nib.
     }
 

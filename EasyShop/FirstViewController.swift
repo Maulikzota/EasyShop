@@ -8,101 +8,166 @@
 
 import UIKit
 import AVFoundation
+import CloudKit
+import MobileCoreServices
 
-class FirstViewController: UIViewController {
+class FirstViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-//http://jamesonquave.com/blog/taking-control-of-the-iphone-camera-in-ios-8-with-swift-part-1/
+    @IBOutlet weak var imageView: UIImageView!
     
-    let captureSession = AVCaptureSession()
-    var captureDevice: AVCaptureDevice?
-    var previewLayer : AVCaptureVideoPreviewLayer?
+    let container = CKContainer.defaultContainer()
+    var publicDatabase: CKDatabase?
+    var currentRecord: CKRecord?
+    var photoURL: NSURL?
     
-    override func viewDidLoad() {
-        
-        
+    override func viewDidLoad() {        
         super.viewDidLoad()
+        publicDatabase = container.publicCloudDatabase
         // Do any additional setup after loading the view, typically from a nib.
-        captureSession.sessionPreset = AVCaptureSessionPresetHigh
-        let devices = AVCaptureDevice.devices()
-        //print(devices)
-        for device in devices{
-            if (device.hasMediaType(AVMediaTypeVideo)){
-                if(device.position == AVCaptureDevicePosition.Back){
-                    captureDevice = device as? AVCaptureDevice
-                    if captureDevice != nil{
-                        beginSession()
+            }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
+    @IBAction func selectPhoto(sender: AnyObject) {
+        
+        let imagePicker = UIImagePickerController()
+        
+        imagePicker.delegate = self
+        imagePicker.sourceType =
+            UIImagePickerControllerSourceType.PhotoLibrary
+        imagePicker.mediaTypes = [kUTTypeImage as NSString]
+        
+        self.presentViewController(imagePicker, animated: true,
+            completion:nil)
+    }
+    
+    func imagePickerController(picker: UIImagePickerController!, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]!) {
+        
+        self.dismissViewControllerAnimated(true, completion: nil)
+        let image =
+        info[UIImagePickerControllerOriginalImage] as UIImage
+        imageView.image = image
+        photoURL = saveImageToFile(image)
+    }
+    
+    func imagePickerControllerDidCancel(picker:
+        UIImagePickerController!) {
+            self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func saveImageToFile(image: UIImage) -> NSURL
+    {
+        let dirPaths = NSSearchPathForDirectoriesInDomains(
+            .DocumentDirectory, .UserDomainMask, true)
+        
+        let docsDir: AnyObject = dirPaths[0]
+        
+        let filePath =
+        docsDir.stringByAppendingPathComponent("currentImage.png")
+        
+        UIImageJPEGRepresentation(image, 0.5).writeToFile(filePath,
+            atomically: true)
+        
+        return NSURL.fileURLWithPath(filePath)!
+    }
+    
+    @IBAction func saveRecord(sender: AnyObject) {
+        
+        if (photoURL == nil) {
+            notifyUser("No Photo", message: "Use the Photo option to choose a photo for the record")
+            return
+        }
+        
+        let asset = CKAsset(fileURL: photoURL!)
+        
+        let myRecord = CKRecord(recordType: "ShopPhotos")
+        myRecord.setObject(asset, forKey: "Photo")
+        myRecord.setObject("Maulik", forKey: "User")
+        myRecord.setObject("Maulik", forKey: "Name")
+        NSLog("Enter1")
+        
+        publicDatabase!.saveRecord(myRecord, completionHandler:
+            ({returnRecord, error in
+                if let err = error {
+                     NSLog("Enter")
+                    self.notifyUser("Save Error", message:
+                        err.localizedDescription)
+                } else {
+                     NSLog("Enter2")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.notifyUser("Success",
+                            message: "Record saved successfully")
+                    }
+                    self.currentRecord = myRecord
+                }
+            }))
+    }
+    
+    func notifyUser(title: String, message: String) -> Void
+    {
+        let alert = UIAlertController(title: title,
+            message: message,
+            preferredStyle: UIAlertControllerStyle.Alert)
+        
+        let cancelAction = UIAlertAction(title: "OK",
+            style: .Cancel, handler: nil)
+        
+        alert.addAction(cancelAction)
+        self.presentViewController(alert, animated: true,
+            completion: nil)
+    }
+    
+    @IBAction func performQuery(sender: AnyObject) {
+        
+        let predicate = NSPredicate(format: "User = %@", "Maulik")
+        
+        let query = CKQuery(recordType: "ShopPhotos", predicate: predicate)
+        
+        publicDatabase?.performQuery(query, inZoneWithID: nil,
+            completionHandler: ({results, error in
+                
+                if (error != nil) {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.notifyUser("Cloud Access Error",
+                            message: error.localizedDescription)
+                    }
+                } else {
+                    if results.count > 0 {
+                        
+                        var record = results[0] as CKRecord
+                        self.currentRecord = record
+                        
+                        dispatch_async(dispatch_get_main_queue()) {
+                            
+                            let photo =
+                            record.objectForKey("Photo") as CKAsset
+                            
+                            let image = UIImage(contentsOfFile:
+                                photo.fileURL.path!)
+                            //NSLog(photo.string)
+                            NSLog(photo.fileURL.path!)
+                            UIApplication.sharedApplication().openURL(NSURL(string: "http://www.google.com")!)
+                            
+                            
+                            //self.imageView.image = image
+                            //self.photoURL = self.saveImageToFile(image!)
+                        }
+                    } else {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.notifyUser("No Match Found", 
+                                message: "No record matching the address was found")
+                        }
                     }
                 }
-            }
-        }
+            }))
     }
     
-//    override func didReceiveMemoryWarning() {
-//        super.didReceiveMemoryWarning()
-//        // Dispose of any resources that can be recreated.
-//    }
     
-    func focusTo(value : Float) {
-        if let device = captureDevice {
-            if(device.lockForConfiguration(nil)) {
-                device.setFocusModeLockedWithLensPosition(value, completionHandler: { (time) -> Void in
-                    //
-                })
-                device.unlockForConfiguration()
-            }
-        }
-    }
     
-    func toggleFlash() {
-        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        if (device.hasTorch) {
-            device.lockForConfiguration(nil)
-            if (device.torchMode == AVCaptureTorchMode.On) {
-                device.torchMode = AVCaptureTorchMode.Off
-            } else {
-                device.setTorchModeOnWithLevel(1.0, error: nil)
-            }
-            device.unlockForConfiguration()
-        }
-    }
     
-    let screenWidth = UIScreen.mainScreen().bounds.size.width
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
-        var anyTouch = touches.anyObject() as UITouch
-        var touchPercent = anyTouch.locationInView(self.view).x / screenWidth
-        focusTo(Float(touchPercent))
-    }
-    
-    override func touchesMoved(touches: NSSet, withEvent event: UIEvent) {
-        var anyTouch = touches.anyObject() as UITouch
-        var touchPercent = anyTouch.locationInView(self.view).x / screenWidth
-        focusTo(Float(touchPercent))
-    }
-    
-    func configureDevice() {
-        if let device = captureDevice {
-            device.lockForConfiguration(nil)
-            device.focusMode = .Locked
-            device.unlockForConfiguration()
-        }
-        
-    }
-    
-    func beginSession() {
-        var err : NSError? = nil
-        captureSession.addInput(AVCaptureDeviceInput(device: captureDevice, error: &err))
-        
-        if err != nil {
-            println("error: \(err?.localizedDescription)")
-        }
-        
-        previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        self.view.layer.addSublayer(previewLayer)
-        previewLayer?.frame = self.view.layer.frame
-        captureSession.startRunning()
-    }
-    
-
 }
 
 
