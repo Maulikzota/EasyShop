@@ -66,7 +66,7 @@ class FirstViewController: UIViewController , UIImagePickerControllerDelegate, U
         let docsDir: AnyObject = dirPaths[0]
         
         let filePath =
-        docsDir.stringByAppendingPathComponent("currentImage.png")
+        docsDir.stringByAppendingPathComponent("currentImage3.jpg")
         
         UIImageJPEGRepresentation(image, 0.5).writeToFile(filePath,
             atomically: true)
@@ -81,36 +81,59 @@ class FirstViewController: UIViewController , UIImagePickerControllerDelegate, U
             return
         }
         
+        println("local file is at \(photoURL?.absoluteString!)")
+        
         var err:NSError?
         let fm = NSFileManager.defaultManager()
-        let dest = fm.URLForUbiquityContainerIdentifier("iCloud.mmz.EasyShop")
-        let s = fm.setUbiquitous(true, itemAtURL: photoURL!, destinationURL: dest!, error: &err)
-        
-        
-        
-        let asset = CKAsset(fileURL: photoURL!)
-        
-        let myRecord = CKRecord(recordType: "ShopPhotos")
-        myRecord.setObject(asset, forKey: "Photo")
-        myRecord.setObject("Maulik", forKey: "User")
-        myRecord.setObject("Maulik", forKey: "Name")
-        NSLog("Enter1")
-        
-        publicDatabase!.saveRecord(myRecord, completionHandler:
-            ({returnRecord, error in
-                if let err = error {
-                     NSLog("Enter")
-                    self.notifyUser("Save Error", message:
-                        err.localizedDescription)
-                } else {
-                     NSLog("Enter2")
-                    dispatch_async(dispatch_get_main_queue()) {
-                        self.notifyUser("Success",
-                            message: "Record saved successfully")
-                    }
-                    self.currentRecord = myRecord
+        var fooqueue = dispatch_queue_create("bkgnd", nil)
+        dispatch_async(fooqueue, {
+            println("in the background")
+            if let dest = fm.URLForUbiquityContainerIdentifier(nil) {
+                let newdest = dest.URLByAppendingPathComponent("Documents/currentImage3.jpg")
+                println("dest url is \(newdest)")
+                let s = fm.setUbiquitous(true, itemAtURL: self.photoURL!, destinationURL: newdest, error: &err)
+                if (err != nil) {
+                    println("Error setting ubiquitous...")
+                    println(err?.localizedDescription)
                 }
-            }))
+//                let fileURLinCloud = dest.URLByAppendingPathComponent("Documents/currentImage3.jpg")
+                println("\ncalling URLForPublishingUbiquitousItemAtURL with \(newdest)")
+                if let newURL = fm.URLForPublishingUbiquitousItemAtURL(newdest, expirationDate: nil, error: &err) {
+                    println("uploaded to iCloud: %s", newURL.absoluteString)
+                } else {
+                    println("error getting pub url")
+                    println(err?.localizedDescription)
+                }
+            } else {
+                println("could not get URLforUbiquityContainerIdentifier")
+            }
+
+        })
+//
+//        
+//        let asset = CKAsset(fileURL: photoURL!)
+//        
+//        let myRecord = CKRecord(recordType: "ShopPhotos")
+//        myRecord.setObject(asset, forKey: "Photo")
+//        myRecord.setObject("Maulik", forKey: "User")
+//        myRecord.setObject("Maulik", forKey: "Name")
+//        NSLog("Enter1")
+//        
+//        publicDatabase!.saveRecord(myRecord, completionHandler:
+//            ({returnRecord, error in
+//                if let err = error {
+//                     NSLog("Enter")
+//                    self.notifyUser("Save Error", message:
+//                        err.localizedDescription)
+//                } else {
+//                     NSLog("Enter2")
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        self.notifyUser("Success",
+//                            message: "Record saved successfully")
+//                    }
+//                    self.currentRecord = myRecord
+//                }
+//            }))
     }
     
     func notifyUser(title: String, message: String) -> Void

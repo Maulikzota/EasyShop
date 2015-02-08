@@ -140,20 +140,20 @@ class MKSImagePicker: UIView,UIActionSheetDelegate, UIImagePickerControllerDeleg
                         data, response, error in
                         
                         
-                        var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
-                        var err1: NSError?
-                        var json2 = NSJSONSerialization.JSONObjectWithData(strData.dataUsingEncoding(NSUTF8StringEncoding)!, options: .MutableLeaves, error:&err1 ) as NSDictionary
+//                        var strData = NSString(data: data, encoding: NSUTF8StringEncoding)
+//                        var err1: NSError?
+//                        var json2 = NSJSONSerialization.JSONObjectWithData(strData.dataUsingEncoding(NSUTF8StringEncoding)!, options: .MutableLeaves, error:&err1 ) as NSDictionary
+//                        
+//                        println("json2 :\(json2)")
+//                        
+//                        if(error != nil) {
+//                            println(error!.localizedDescription)
+//                        }
+//                        else {
+//                            var success = json2["success"] as? Int
+//                            println("Succes: \(success)")
+//                        }
                         
-                        println("json2 :\(json2)")
-                        
-                        if(error != nil) {
-                            println(error!.localizedDescription)
-                        }
-                        else {
-                            var success = json2["success"] as? Int
-                            println("Succes: \(success)")
-                        }
-                            
                         // if response was JSON, then parse it
                         
                         // if response was text or html, then just convert it to a string
