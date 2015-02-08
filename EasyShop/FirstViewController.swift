@@ -81,6 +81,13 @@ class FirstViewController: UIViewController , UIImagePickerControllerDelegate, U
             return
         }
         
+        var err:NSError?
+        let fm = NSFileManager.defaultManager()
+        let dest = fm.URLForUbiquityContainerIdentifier("iCloud.mmz.EasyShop")
+        let s = fm.setUbiquitous(true, itemAtURL: photoURL!, destinationURL: dest!, error: &err)
+        
+        
+        
         let asset = CKAsset(fileURL: photoURL!)
         
         let myRecord = CKRecord(recordType: "ShopPhotos")
@@ -164,6 +171,27 @@ class FirstViewController: UIViewController , UIImagePickerControllerDelegate, U
                 }
             }))
     }
+    
+    
+    @IBAction func urlDownload(sender: AnyObject) {
+        
+        let fm = NSFileManager.defaultManager()
+        
+//        var err:NSError?
+//        
+//        let dest = fm.URLForUbiquityContainerIdentifier("iCloud.mmz.EasyShop")
+//        let z = dest?.URLByAppendingPathComponent("#iclouddrive")
+//        let y = z?.URLByAppendingPathComponent("images.jpeg")
+//        let d = fm.URLForPublishingUbiquitousItemAtURL(y!,expirationDate:nil,error: &err)
+//        if let string = d?.absoluteString {
+//            println(string)
+//        }
+        
+        
+        
+        
+    }
+
     
     
     

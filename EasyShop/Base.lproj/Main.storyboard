@@ -89,6 +89,9 @@
                                 <state key="normal" title="Delete">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="urlDownload:" destination="9pv-A4-QxB" eventType="touchUpInside" id="WiP-Th-0GO"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0hW-lq-D5t">
                                 <rect key="frame" x="36" y="254" width="329" height="228"/>

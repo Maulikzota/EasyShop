@@ -126,26 +126,26 @@ class SecondViewController: UIViewController,ModelDelegate{
        
     }
   
-    func loadImageURL(){
-        
-        let detailItem = ShopPhotos!
-            
-        detailItem.fetchPhotos() { assets in
-            if assets != nil {
-                var x = 10
-                for record in assets {
-                    if let asset = record.objectForKey("Photo") as? CKAsset {
-                        let image: UIImage? = UIImage(contentsOfFile: asset.fileURL.path!)
-                        if image != nil {
-                            let imView = UIImageView(image: image)
-                           // image ?.description
-                        }
-                    }
-                }
-            }
-        }
-    
-    }
+//    func loadImageURL(){
+//        
+//        let detailItem = ShopPhotos!
+//            
+//        detailItem.fetchPhotos() { assets in
+//            if assets != nil {
+//                var x = 10
+//                for record in assets {
+//                    if let asset = record.objectForKey("Photo") as? CKAsset {
+//                        let image: UIImage? = UIImage(contentsOfFile: asset.fileURL.path!)
+//                        if image != nil {
+//                            let imView = UIImageView(image: image)
+//                           // image ?.description
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    
+//    }
    
 
 
