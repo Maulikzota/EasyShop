@@ -4,8 +4,7 @@
 <dict>
 	<key>com.apple.developer.icloud-container-identifiers</key>
 	<array>
-		<string>iCloud.$(CFBundleIdentifier)</string>
-		<string>2S3D8J8M3T.iCloud.mmz.EasyShop</string>
+		<string>iCloud.mmz.EasyShop</string>
 	</array>
 	<key>com.apple.developer.icloud-services</key>
 	<array>
@@ -14,8 +13,7 @@
 	</array>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>iCloud.$(CFBundleIdentifier)</string>
-		<string>2S3D8J8M3T.iCloud.mmz.EasyShop</string>
+		<string>iCloud.mmz.EasyShop</string>
 	</array>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
 	<string>$(TeamIdentifierPrefix)$(CFBundleIdentifier)</string>

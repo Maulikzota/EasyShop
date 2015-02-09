@@ -10,7 +10,7 @@ import MobileCoreServices
 import CloudKit
 import MobileCoreServices
 
-class SecondViewController: UIViewController,ModelDelegate{
+class SecondViewController: UIViewController,ModelDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate{
 
     @IBOutlet weak var imagesCollectionView: UICollectionView!
     
@@ -99,7 +99,7 @@ class SecondViewController: UIViewController,ModelDelegate{
     @IBAction func capture(sender : UIButton) {
          intializePhotoPicker(sender)
         
-       /* if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera){
             println("Button capture")
             
             var imag = UIImagePickerController()
@@ -110,7 +110,7 @@ class SecondViewController: UIViewController,ModelDelegate{
             imag.allowsEditing = false
             
             self.presentViewController(imag, animated: true, completion: nil)
-        }*/
+        }
     }
     
      //for cloudkit model

@@ -10,8 +10,11 @@ import UIKit
 import AVFoundation
 import CloudKit
 import MobileCoreServices
+import Foundation
+import CoreData
 
-class FirstViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+class FirstViewController: UIViewController , UIImagePickerControllerDelegate, UINavigationControllerDelegate, NSURLConnectionDataDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     
@@ -66,7 +69,7 @@ class FirstViewController: UIViewController , UIImagePickerControllerDelegate, U
         let docsDir: AnyObject = dirPaths[0]
         
         let filePath =
-        docsDir.stringByAppendingPathComponent("currentImage3.jpg")
+        docsDir.stringByAppendingPathComponent("currentImage.jpg")
         
         UIImageJPEGRepresentation(image, 0.5).writeToFile(filePath,
             atomically: true)
@@ -83,32 +86,57 @@ class FirstViewController: UIViewController , UIImagePickerControllerDelegate, U
         
         println("local file is at \(photoURL?.absoluteString!)")
         
+        //var redirecturl: NSURL?
+        
         var err:NSError?
         let fm = NSFileManager.defaultManager()
         var fooqueue = dispatch_queue_create("bkgnd", nil)
         dispatch_async(fooqueue, {
             println("in the background")
             if let dest = fm.URLForUbiquityContainerIdentifier(nil) {
-                let newdest = dest.URLByAppendingPathComponent("Documents/currentImage3.jpg")
-                println("dest url is \(newdest)")
-                let s = fm.setUbiquitous(true, itemAtURL: self.photoURL!, destinationURL: newdest, error: &err)
-                if (err != nil) {
-                    println("Error setting ubiquitous...")
-                    println(err?.localizedDescription)
-                }
-//                let fileURLinCloud = dest.URLByAppendingPathComponent("Documents/currentImage3.jpg")
+                let newdest = dest.URLByAppendingPathComponent("Documents/currentImage.jpg")
+//                println("dest url is \(newdest)")
+//                let s = fm.setUbiquitous(true, itemAtURL: self.photoURL!, destinationURL: newdest, error: &err)
+//                if (err != nil) {
+//                    println("Error setting ubiquitous...")
+//                    println(err?.localizedDescription)
+//                }
+////                let fileURLinCloud = dest.URLByAppendingPathComponent("Documents/currentImage3.jpg")
                 println("\ncalling URLForPublishingUbiquitousItemAtURL with \(newdest)")
                 if let newURL = fm.URLForPublishingUbiquitousItemAtURL(newdest, expirationDate: nil, error: &err) {
                     println("uploaded to iCloud: %s", newURL.absoluteString)
+                    let b = newURL.absoluteString!.stringByRemovingPercentEncoding!
+                    let c = b.stringByRemovingPercentEncoding!
+                    let yourImageURL = newURL.absoluteString!;
+                    let searchURL = "https://www.google.com/searchbyimage?&image_url="
+                    let completeURL = searchURL + yourImageURL
+                    let str = NSURL(string: completeURL)
+//                    NSString * completeURL = [NSString stringWithFormat:@"%@%@", searchURL, yourImageURL];
+                    
+                    UIApplication.sharedApplication().openURL(newURL)
+                    //redirecturl = newURL
+                    
+                 
+                    
+                    
+                    println(c)
                 } else {
                     println("error getting pub url")
                     println(err?.localizedDescription)
                 }
+                
+                
             } else {
                 println("could not get URLforUbiquityContainerIdentifier")
             }
 
+            
         })
+        
+        //let a="http%3A%2F%2Fwww.google.com%2F%0A"
+        
+        
+        
 //
 //        
 //        let asset = CKAsset(fileURL: photoURL!)
@@ -250,12 +278,16 @@ class FirstViewController: UIViewController , UIImagePickerControllerDelegate, U
 //            println(string)
 //        }
         
-        
-        
-        
     }
-
     
+//      func connection(connection: NSURLConnection, willSendRequest request: NSURLRequest, redirectResponse response: NSURLResponse?) -> NSURLRequest? {
+//        if((response) != nil){
+//            let url = [request .URL]
+//            
+//            NSMutableURLRequest *newRequst = [_originalRequest mutuableCopy]
+//            
+//        }
+ //   }
     
     
     
